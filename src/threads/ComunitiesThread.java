@@ -2,6 +2,7 @@ package threads;
 
 import data_classes.Comunity;
 import data_classes.Country;
+import utils.FilesRW;
 
 public class ComunitiesThread extends Thread{
 
