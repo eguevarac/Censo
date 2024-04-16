@@ -1,25 +1,46 @@
 package data_classes;
 
+import java.util.ArrayList;
+
 public class Province {
 
     private String name;
-    private String population;
-
-    public Province(String name, String population){
-        this.name = name;
-        this.population = population;
-    }
+    private int population;
+    private ArrayList<Municipy> municipies;
 
     public Province(String name){
         this.name = name;
+        this.population = 0;
+        this.municipies = new ArrayList<>();
     }
 
+    public ArrayList<Municipy> getMunicipies() {
+        return municipies;
+    }
 
-    public String getPopulation() {
+    public int getPopulation() {
         return population;
     }
 
-    public void setPopulation(String population) {
-        this.population = population;
+    public String getName() {
+        return name;
+    }
+
+    public void setMunicipies(ArrayList<Municipy> municipies) {
+        this.municipies = municipies;
+    }
+
+    public void showMunicipies(){
+        System.out.println("  - " + this.name + ": (pob -> "+population+")");
+        for (Municipy mun :
+                municipies) {
+            System.out.println("    * " + mun.getName() + ": (pob -> " + mun.getPopulation() + ")");
+        }
+    }
+    public void updatePopulation(){
+        for (Municipy mun :
+                municipies) {
+            population += mun.getPopulation();
+        }
     }
 }
