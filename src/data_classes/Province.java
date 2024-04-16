@@ -14,10 +14,6 @@ public class Province {
         this.municipies = new ArrayList<>();
     }
 
-    public ArrayList<Municipy> getMunicipies() {
-        return municipies;
-    }
-
     public int getPopulation() {
         return population;
     }
@@ -30,13 +26,20 @@ public class Province {
         this.municipies = municipies;
     }
 
-    public void showMunicipies(){
+    /**
+     * Muestra los datos de la provincia
+     */
+    public void showData(){
         System.out.println("  - " + this.name + ": (pob -> "+population+")");
         for (Municipy mun :
                 municipies) {
             System.out.println("    * " + mun.getName() + ": (pob -> " + mun.getPopulation() + ")");
         }
     }
+
+    /**
+     * Actualiza la población de la provincia
+     */
     public void updatePopulation(){
         for (Municipy mun :
                 municipies) {

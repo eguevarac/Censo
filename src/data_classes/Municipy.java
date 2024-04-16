@@ -18,6 +18,11 @@ public class Municipy {
         return name;
     }
 
+    /**
+     * Convierte el String de población en un int
+     * @param populationString La población que figura en el archivo
+     * @return int con la población
+     */
     private int convertPopulationToInt(String populationString){
         String newPopulationString;
         if(populationString.contains(".")){

@@ -32,11 +32,9 @@ public class Comunity {
     }
 
 
-
-    public void addProvince(Province province){
-        provinces.add(province);
-    }
-
+    /**
+     * Actualiza la población de la comunidad
+     */
     public void updatePopulation(){
         for (Province pro :
                 provinces) {
@@ -44,17 +42,16 @@ public class Comunity {
         }
     }
 
-    public void showProvinces(){
+    /**
+     * Muestra los datos de la comunidad
+     */
+    public void showData(){
         System.out.println(this.name.toUpperCase()+ ": (pob -> "+population+")");
         System.out.println("--------------------------------");
         for (Province pro :
                 provinces) {
-            pro.showMunicipies();
+            pro.showData();
         }
         System.out.println("\n");
-    }
-
-    public void showPopulation(){
-        System.out.println("Población de " + name + " = " + population);
     }
 }

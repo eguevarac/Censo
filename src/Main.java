@@ -9,19 +9,50 @@ public class Main {
 
         Country country = new Country("España");
         country.setComunities(FilesRW.readComunities());
-        ArrayList<ComunitiesThread> comThreads = new ArrayList<>();
-        ArrayList<ProvincesThread> proThreads = new ArrayList<>();
 
 
-        setComunities(country, comThreads);
-        setProvinces(country, proThreads);
+        setComunities(country);
+        setProvinces(country);
 
         country.updatePopulation();
 
-        country.showComunities();
+        country.showData();
     }
 
-    private static void setProvinces(Country country, ArrayList<ProvincesThread> proThreads) {
+
+    /**
+     * establece las comunidades del país
+     * @param country el objeto Country en el que añadiremos las comunidades
+     */
+    private static void setComunities(Country country) {
+        ArrayList<ComunitiesThread> comThreads = new ArrayList<>();
+        for (Comunity com :
+                country.getComunities()) {
+            ComunitiesThread comThread = new ComunitiesThread(com);
+            comThreads.add(comThread);
+        }
+
+        for (ComunitiesThread comThread :
+                comThreads) {
+            comThread.start();
+        }
+
+        for (ComunitiesThread comThread :
+                comThreads) {
+            try {
+                comThread.join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    /**
+     * establece las provincias de cada comunidad
+     * @param country el objeto Country donde serán añadidas las provincias
+     */
+    private static void setProvinces(Country country) {
+        ArrayList<ProvincesThread> proThreads = new ArrayList<>();
         for (Comunity com :
                 country.getComunities()) {
             for (Province pro :
@@ -40,29 +71,6 @@ public class Main {
                 proThreads) {
             try {
                 proThread.join();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
-
-    private static void setComunities(Country country, ArrayList<ComunitiesThread> comThreads) {
-        for (Comunity com :
-                country.getComunities()) {
-            ComunitiesThread comThread = new ComunitiesThread(com);
-            comThreads.add(comThread);
-        }
-
-        for (ComunitiesThread comThread :
-                comThreads) {
-            comThread.start();
-        }
-
-        for (ComunitiesThread comThread :
-                comThreads) {
-            try {
-                comThread.join();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

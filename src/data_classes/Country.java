@@ -23,6 +23,9 @@ public class Country {
         return comunities;
     }
 
+    /**
+     * Actualiza la población del país
+     */
     public void updatePopulation(){
         for (Comunity com :
                 comunities) {
@@ -38,16 +41,15 @@ public class Country {
         }
     }
 
-    public void showComunities(){
+    /**
+     * Muestra los datos del país
+     */
+    public void showData(){
         System.out.println(this.name.toUpperCase()+ ": (pob -> "+population+")");
         System.out.println("\n");
         for (Comunity com :
                 comunities) {
-            com.showProvinces();
+            com.showData();
         }
-    }
-
-    public void showPopulation(){
-        System.out.println("Población de España = " + population);
     }
 }
